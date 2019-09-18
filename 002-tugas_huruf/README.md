@@ -1,4 +1,4 @@
 ### Workshop Mandiri (LINES & TRIANGLES)
 Make the initial letter of your name.
 
-Adapted from [David W. Parker](https://github.com/davidwparker/programmingtil-webgl)'s tutorial.
+Adapted from [David W. Parker's tutorial](https://github.com/davidwparker/programmingtil-webgl)
