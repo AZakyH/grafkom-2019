@@ -6,12 +6,19 @@
         <meta http-equiv="X-UA-Compatible" content="ie=edge">
         <title>Belajar WebGL</title>
     </head>
+
     <body>
         <canvas id="glcanvas" width="640" height="480">
-            Browser anda tidak mendukung HTML5 <canvas>
+            Browser anda tidak mendukung HTML5 "canvas"
         </canvas>
-
+        
+        <!-- Shaders -->
+        <!-- <script name="shader" data-source="vertex.glsl" type="text/javascript" src="libs/glUtils.js"></script> -->
+        <!-- JavaScript pembantu pembaca file eksternal -->
+        <script type="text/javascript" src="libs/signals.js"></script>
+        <!-- JavaScript penghubung ke WebGL -->
         <script type="text/javascript" src="libs/glUtils.js"></script>
+        <!-- JavaScript utama -->
         <script type="text/javascript" src="index.js"></script>
     </body>
 </html>
