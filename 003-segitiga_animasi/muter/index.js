@@ -29,7 +29,7 @@
     var vPosition = gl.getAttribLocation(program, 'vPosition');
     var vColor = gl.getAttribLocation(program, 'vColor');
     gl.vertexAttribPointer(
-      vPosition,  // variable yang memegang psisi attribute di shader
+      vPosition,  // variable yang memegang posisi attribute di shader
       2,          // jumlah elemen per attribute
       gl.FLOAT,   // tipe data attribute
       gl.FALSE,
