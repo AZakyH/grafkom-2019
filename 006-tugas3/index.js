@@ -100,8 +100,7 @@
     var mmLoc = gl.getUniformLocation(program, 'modelMatrix');
     var mm = glMatrix.mat4.create();
     var vecScale = [ 1.0, 1.0, 1.0 ];
-    var vecScaleH = [ 0.5, 0.5, 0.5 ];
-    var vecScaleH = [ 0.5, 0.5, 0.5 ];
+    var vecScaleH = [ 0.3, 0.3, 0.3 ];
     var trans = {
       x: 0.0, y: 0.0, z:0.0
     }
@@ -123,8 +122,8 @@
       glMatrix.mat4.scale(mm, mm, vecScale);
       //Muter Cube-nya
       theta += 0.0037;
-      glMatrix.mat4.rotateX(mm, mm, theta);
-      glMatrix.mat4.rotateY(mm, mm, theta);
+      glMatrix.mat4.rotateX(mm, mm, -0.25);
+      glMatrix.mat4.rotateY(mm, mm, 0.3);
       gl.uniformMatrix4fv(mmLoc, false, mm);
       // nge-draw Cube-nya
       genDraw(gl.LINE_LOOP, atas);
@@ -143,18 +142,23 @@
       glMatrix.mat4.rotateY(mm, mm, theta);
       //Biar H-nya jalan-jalan
       console.log(trans.x);
-      if(trans.x + 0.5 > 0.5*5 || trans.x + -0.5 < -0.5*5)
+      if(trans.x + 0.5 > 0.5*3.5|| trans.x + -0.5 < -0.5*3.5)
       {
         xAdders *= -1;
       }
       trans.x += xAdders;
-      if(trans.y + 0.5 > 0.5*5 || trans.y + -0.5 < -0.5*5)
+      if(trans.y + 0.5 > 0.5*3.5 || trans.y + -0.5 < -0.5*3.5)
       {
         yAdders *= -1;
       }
       trans.y += yAdders;
+      if(trans.z + 0.5 > 0.5*3.5 || trans.z + -0.5 < -0.5*3.5)
+      {
+        zAdders *= -1;
+      }
+      trans.z += zAdders;
 
-      glMatrix.mat4.translate(mm, mm, [trans.x, trans.y, 0.0]);
+      glMatrix.mat4.translate(mm, mm, [trans.x, trans.y, trans.z]);
 
       gl.uniformMatrix4fv(mmLoc, false, mm);
 
