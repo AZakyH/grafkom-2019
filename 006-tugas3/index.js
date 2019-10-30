@@ -45,40 +45,7 @@
       gl.enableVertexAttribArray(vPosition);
       return n;
     }
-       
-    // var cubeVertices = new Float32Array([
-    //   -0.5, -0.5,  0.5,
-    //   -0.5,  0.5,  0.5,
-    //   0.5,  0.5,  0.5,
-    //   0.5, -0.5,  0.5,
-    //   -0.5, -0.5,  0.5, // depan
 
-    //   -0.5, -0.5, -0.5,
-    //   -0.5,  0.5, -0.5,
-    //   0.5,  0.5, -0.5,
-    //   0.5, -0.5, -0.5
-    // ]);
-    // var cubeVertices = new Float32Array([
-    //   -0.5, -0.5,  -0.5,
-    //   -0.5,  -0.5,  0.5,
-    //   0.5,  -0.5,  0.5,
-    //   0.5, -0.5, -0.5,
-    //   -0.5, -0.5, -0.5, // bawah
-
-    //   -0.5, 0.5, -0.5,
-    //   0.5,  0.5, -0.5,
-    //   0.5,  -0.5, -0.5,
-    //   0.5, -0.5,  0.5,
-    //   0.5, 0.5,  0.5,
-
-    //   -0.5, -0.5, 0.5,
-    //   -0.5,  -0.5, -0.5,
-    //   0.5,  0.5, -0.5,
-    //   0.5, 0.5,  0.5, // bawah
-    //   -0.5, 0.5,  0.5,
-    //   -0.5, -0.5,  -0.5,
-
-    // ]);
     var atas = new Float32Array([
       -0.5, 0.5, -0.5,
       -0.5,  0.5, 0.5,
@@ -138,6 +105,9 @@
     var trans = {
       x: 0.0, y: 0.0, z:0.0
     }
+    var xAdders = 0.04;
+    var yAdders = 0.03;
+    var zAdders = 0.02;
     var theta = 0.0;
 
     function render() {
@@ -152,7 +122,7 @@
       mm = glMatrix.mat4.create(); //reset matrix to origin
       glMatrix.mat4.scale(mm, mm, vecScale);
       //Muter Cube-nya
-      theta += 0.01;
+      theta += 0.0037;
       glMatrix.mat4.rotateX(mm, mm, theta);
       glMatrix.mat4.rotateY(mm, mm, theta);
       gl.uniformMatrix4fv(mmLoc, false, mm);
@@ -171,8 +141,21 @@
       // Rotate
       theta += 0.0037;
       glMatrix.mat4.rotateY(mm, mm, theta);
-      //Biar H-nya di tengah
-      glMatrix.mat4.translate(mm, mm, [-0.35, 0.0, 0.0]);
+      //Biar H-nya jalan-jalan
+      console.log(trans.x);
+      if(trans.x + 0.5 > 0.5*5 || trans.x + -0.5 < -0.5*5)
+      {
+        xAdders *= -1;
+      }
+      trans.x += xAdders;
+      if(trans.y + 0.5 > 0.5*5 || trans.y + -0.5 < -0.5*5)
+      {
+        yAdders *= -1;
+      }
+      trans.y += yAdders;
+
+      glMatrix.mat4.translate(mm, mm, [trans.x, trans.y, 0.0]);
+
       gl.uniformMatrix4fv(mmLoc, false, mm);
 
       genDraw(gl.TRIANGLE_FAN, triangleVertices1);
